@@ -1,7 +1,7 @@
 package com.evaluacion.inventario.Services;
 
-import com.evaluacion.inventario.Models.Producto;
-import com.evaluacion.inventario.Repository.ProductoRepository;
+import com.evaluacion.inventario.Models.Product;
+import com.evaluacion.inventario.Repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,16 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoService {
+public class ProductService {
 
     @Autowired
-    private ProductoRepository productoRepository;
+    private ProductRepository productoRepository;
 
-    public Producto registrarProducto(Producto producto) {
+    public Product registrarProducto(Product producto) {
         return productoRepository.save(producto);
     }
 
-    public Producto modificarProducto(Long id, Producto producto) {
+    public Product modificarProducto(Long id, Product producto) {
         producto.setId(id);
         return productoRepository.save(producto);
     }
@@ -30,15 +30,15 @@ public class ProductoService {
         productoRepository.deleteById(id);
     }
 
-    public Optional<Producto> buscarProductoPorId(Long id) {
+    public Optional<Product> buscarProductoPorId(Long id) {
         return productoRepository.findById(id);
     }
 
-    public List<Producto> buscarTodos() {
+    public List<Product> buscarTodos() {
         return productoRepository.findAll();
     }
 
-    public Page<Producto> buscarProductosPaginados(Pageable pageable) {
+    public Page<Product> buscarProductosPaginados(Pageable pageable) {
         return productoRepository.findAll(pageable);
     }
 }
